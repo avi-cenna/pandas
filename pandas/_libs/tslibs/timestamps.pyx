@@ -313,11 +313,17 @@ cdef class _Timestamp(ABCTimestamp):
 
     def __sub__(self, other):
 
+        print("Version code = 1.3")
+        print("calling __sub__ with:")
+        print(other)
+
         if is_any_td_scalar(other) or is_integer_object(other):
+            print("is_any_td_scalar(other) or is_integer_object(other)")
             neg_other = -other
             return self + neg_other
 
         elif is_array(other):
+            print("is_array(other)")
             if other.dtype.kind in ['i', 'u']:
                 raise integer_op_not_supported(self)
             if other.dtype.kind == "m":
